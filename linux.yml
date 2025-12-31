@@ -1,23 +1,19 @@
-
-
 version: "3.7"
 
 services:
-windows: 
+windows:
 image: dockurr/windows
 container_name: windows
 privileged: true
-restart: "unless-stopped"
+restart: unless-stopped
 devices:
-   - /dev/kvm 
-   - /dev/net/tun 
-cap_add:a
-   - NET_ADMIN
+- /dev/kvm
+- /dev/net/tun
+cap_add:
+- NET_ADMIN
 ports:
-
-   - "8007:8006"
-   - "8008:8006"
-
+- "8007:8006"
+- "8008:8006"
 environment:
 USERNAME: "Code-chillmusic"
 PASSWORD: "admin123"
