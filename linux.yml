@@ -1,26 +1,29 @@
-version: "3.7"
-
+version: '3.7'
 services:
-windows:
-image: dockurr/windows
-container_name: windows
-privileged: true
+linux-webtop:
+image: linuxserver/webtop:latest 
+container_name: linux-webtop
 restart: unless-stopped
-devices:
-- /dev/kvm
-- /dev/net/tun
-cap_add:
-- NET_ADMIN
+
 ports:
-- "8007:8006"
-- "8008:8006"
+   - "8100:3000"
+
 environment:
-USERNAME: "Code-chillmusic"
-PASSWORD: "admin123"
-VERSION: "10"
-RAM_SIZE: "32G"
-CPU_CORES: "4"
-DISK_SIZE: "100G"
-DISK2_SIZE: "80G"
-SCREEN_RESOLUTION: "1280x720"
-REBUILD: "false"
+   - PUID=1000
+   - PGID=1000
+   - TZ=Asia/Ho_Chi_Minh
+   - KEYBOARD=en
+   - TITLE=Linux Webtop
+
+shm_size: '1gb'
+
+deploy:
+resources:
+limits:
+cpus: '2.0'
+memory: 100g
+reservations:
+memory: 102400M
+#note: bật code bằng sudo docker compose -f "linux.yml" up -d
+#note: tắt bằng sudo docker compose -f "linux.yml" down 
+#note: code này làm bởi:chillmusic-o7v
